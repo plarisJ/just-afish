@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import AfishPost from './components/AfishPost';
+import AfishItem from './components/AfishItem';
 import './App.css';
+import AppHeader from './components/AppHeader';
+import afishs from './data/Afishs';
+import React, { useEffect, useState } from "react";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [selectedAfish, setSelectedAfish] = useState(afishs[0]);
+    const afishElements = afishs.map((afish,index)=>{
+        return <AfishItem key={index} afish={afish}/>;
+    })
+
+    let afishPost = null;
+    if (!!selectedAfish){
+        afishPost = <AfishPost afish={selectedAfish}/>
+    }
+
+    return (
+        <div className="app">
+            <AppHeader/>
+            <div className="app-grid">
+                {afishElements}
+            </div>
+            {afishPost}
+        </div>
+    );
 }
 
 export default App;
