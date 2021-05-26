@@ -4,11 +4,12 @@ import './App.css';
 import AppHeader from './components/AppHeader';
 import afishs from './data/Afishs';
 import React, { useEffect, useState } from "react";
+import AppSearch from './components/AppSearch';
 
 
 function App() {
     const [selectedAfish, setSelectedAfish] = useState(null);
-
+    const [searchdAfish, setSearchAfish] = useState('');
     function onAfishOpenClick(theFish){
         setSelectedAfish(theFish);
     }
@@ -16,10 +17,12 @@ function App() {
         setSelectedAfish(null);
     }
 
-
-    const afishElements = afishs.map((afish,index)=>{
+    
+    const afishElements = afishs.filter((afish)=> {
+        return afish.title.includes(searchdAfish);
+    }).map((afish,index)=>{
         return <AfishItem key={index} afish={afish} onAfishClick={onAfishOpenClick}/>;
-    })
+    });
 
     let afishPost = null;
     if (!!selectedAfish){
@@ -29,6 +32,7 @@ function App() {
     return (
         <div className="app">
             <AppHeader/>
+            <AppSearch value={searchdAfish} onValueChange={setSearchAfish}/>
             <div className="app-grid">
                 {afishElements}
             </div>
