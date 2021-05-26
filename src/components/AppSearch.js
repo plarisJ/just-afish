@@ -1,7 +1,8 @@
+import './AppSearch.css';
 function AppSearch(props){
     const{value, onValueChange} = props
     return (
-        <div className="aapp-search">
+        <div className="app-search">
             <input 
                 className="app-search-input"
                 type="text"

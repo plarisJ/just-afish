@@ -32,10 +32,14 @@ function App() {
     return (
         <div className="app">
             <AppHeader/>
-            <AppSearch value={searchdAfish} onValueChange={setSearchAfish}/>
-            <div className="app-grid">
-                {afishElements}
-            </div>
+            <section className="app-section">
+                <div className="app-container">
+                    <AppSearch value={searchdAfish} onValueChange={setSearchAfish}/>
+                    <div className="app-grid">
+                        {afishElements}
+                    </div>
+                </div>
+            </section>
             {afishPost}
         </div>
     );
