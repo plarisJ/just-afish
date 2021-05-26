@@ -7,14 +7,23 @@ import React, { useEffect, useState } from "react";
 
 
 function App() {
-    const [selectedAfish, setSelectedAfish] = useState(afishs[0]);
+    const [selectedAfish, setSelectedAfish] = useState(null);
+
+    function onAfishOpenClick(theFish){
+        setSelectedAfish(theFish);
+    }
+    function onAfishCloseClick(){
+        setSelectedAfish(null);
+    }
+
+
     const afishElements = afishs.map((afish,index)=>{
-        return <AfishItem key={index} afish={afish}/>;
+        return <AfishItem key={index} afish={afish} onAfishClick={onAfishOpenClick}/>;
     })
 
     let afishPost = null;
     if (!!selectedAfish){
-        afishPost = <AfishPost afish={selectedAfish}/>
+        afishPost = <AfishPost afish={selectedAfish} onBgClick={onAfishCloseClick}/>
     }
 
     return (
